@@ -1,6 +1,6 @@
 package com.unittest.unit_testing.service;
 
-//this is another example of unit testing using mock
+//this is another example of unit testing using mock and its annotations
 public class SomeBusinessServiceImpl3 {
 
     private SomeDataService someDataService;
