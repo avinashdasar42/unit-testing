@@ -3,6 +3,7 @@ package com.unittest.unit_testing.service;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -85,5 +86,44 @@ public class MockExampleTest {
         List<String> allValues = captor.getAllValues();
         assertEquals("JohnWick",allValues.get(0));
         assertEquals("JohnWick2",allValues.get(1));
+    }
+
+//    Below code shows difference between mock vs spy
+
+    @Test
+    void mocking(){
+        ArrayList<String> mockList = mock(ArrayList.class);
+
+        System.out.println(mockList.get(0));//null
+        System.out.println(mockList.size());//0
+
+        mockList.add("One");
+        mockList.add("Two");
+
+        System.out.println(mockList.size());// still prints 0 because its mock i.e.fake object
+//        let's mock'
+        when(mockList.size()).thenReturn(100);
+        System.out.println(mockList.size());//100
+        mockList.add("Three");
+        System.out.println(mockList.size());//100
+    }
+
+    //spy >> it acts as a real object until it mocked
+    @Test
+    void spying(){
+        ArrayList<String> spyList = spy(ArrayList.class);
+
+//        System.out.println(spyList.get(0));//it will throw exception since there is no elements in given list i.e it acts as real object
+        spyList.add("One");
+        System.out.println(spyList.get(0));//One
+        System.out.println(spyList.size());//1
+
+        spyList.add("Two");
+        System.out.println(spyList.size());//2
+//        let's mock'
+        when(spyList.size()).thenReturn(100);
+        System.out.println(spyList.size());//100
+        spyList.add("Three");
+        System.out.println(spyList.size());//100
     }
 }
