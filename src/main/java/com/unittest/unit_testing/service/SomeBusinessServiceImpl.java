@@ -1,6 +1,7 @@
 package com.unittest.unit_testing.service;
 
-public class BasicUnitTestExample {
+//This is basic example of unit testing
+public class SomeBusinessServiceImpl {
 
     public int calculateSum(int[] arr){
         int sum = 0;
